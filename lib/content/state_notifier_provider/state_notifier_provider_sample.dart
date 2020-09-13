@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:state_notifier/state_notifier.dart';
 
-part 'counter_state_provider.dart';
+part 'counter_state_notifier_provider.dart';
 
-class StateProviderSample extends HookWidget {
-  const StateProviderSample({Key key, this.title}) : super(key: key);
+class StateNotifierProviderSample extends HookWidget {
+  const StateNotifierProviderSample({Key key, this.title}) : super(key: key);
 
   final String title;
 
   @override
   Widget build(BuildContext context) {
-    final stateProvider = useProvider(countStateProvider);
+    final count = useProvider(countStateNotifierProvider.state);
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
@@ -24,14 +25,14 @@ class StateProviderSample extends HookWidget {
             'You have pushed the button this many times:',
           ),
           Text(
-            stateProvider.state.toString(),
+            count.toString(),
             style: Theme.of(context).textTheme.headline4,
           ),
         ],
       )),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          stateProvider.state++;
+          context.read(countStateNotifierProvider).add(2);
         },
         tooltip: 'Increment',
         child: Icon(Icons.add),

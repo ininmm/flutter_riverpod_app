@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod_app/Routes.dart';
+import 'package:flutter_riverpod_app/content/state_notifier_provider/state_notifier_provider_sample.dart';
 import 'package:flutter_riverpod_app/content/state_provider/state_provider_sample.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -20,10 +21,14 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      initialRoute: Routes.State_Provider,
+      initialRoute: Routes.State_Notifier_Provider,
       routes: {
         Routes.State_Provider: (context) =>
             StateProviderSample(title: 'State Provider Sample'),
+        Routes.State_Notifier_Provider: (context) =>
+            StateNotifierProviderSample(
+              title: 'State Notifier Provider Sample',
+            )
       },
     );
   }
